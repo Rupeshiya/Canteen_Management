@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1540843596 source:c:\users\rupesh\desktop\cpp code class_files\canteen_management\main.cpp
+	<iostream>
+	<cstdio>
+	<fstream>
+	<sstream>
+	<string>
+	<cstdlib>
+	<conio.h>
+	<windows.h>
+	<winsock.h>
+	<mysql.h>
+	<typeinfo>
+
