@@ -822,12 +822,12 @@ void place_order()
              cout<<total<<endl;
              yy++;
              cout<<"TAX%: ";
-             cout<<"+"<<ttaxt<<endl;
+             cout<<"+"<<ttaxt<<"%"endl;
              yy++;
              cout<<"----------------------------";
              yy++;
              cout<<"NET TOTAL: ";
-             cout<<(total+((ttaxt*total)/100))<<endl;
+             cout<<"Rs."<<(total+((ttaxt*total)/100))<<endl;
              yy++;
              cout<<"-------------------------------------------------------------------------"<<endl;
       }
