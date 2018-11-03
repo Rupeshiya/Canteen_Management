@@ -18,6 +18,7 @@ struct order
       float price1,dis1;
 }o1[50];
 int orderk=0;
+void mainMenu();
 void middleadminmenu();
 void copyme(int k,order order1[],int q1,int &c2);
 void intromain();
@@ -46,15 +47,15 @@ public:
             return cust_id;
       }
       char *getcustnm()
-      { 
+      {
             return cname;
       }
       char *getcustadd()
-      { 
+      {
             return address;
       }
       char *getphno()
-      { 
+      {
             return phno;
       }
       void cust_input(int custid)
@@ -123,13 +124,13 @@ void customer::modifycust_data(int n1,char nm[15],char add[15],char q[15])
                   break;
             }
             if(strlen(tmpnm)==0)
-            { 
+            {
                   flag=0;
                   break;
             }
       }
       if(flag==1)
-      { 
+      {
             strcpy(cname,tmpnm);
       }
       strcpy(address,add);
@@ -146,13 +147,13 @@ void customer::modifycust_data(int n1,char nm[15],char add[15],char q[15])
                   break;
             }
             if(strlen(tmpnm2)==0)
-            { 
+            {
                   flag=0;
                   break;
             }
       }
       if(flag==1)
-      { 
+      {
             strcpy(address,tmpnm2);
       }
       strcpy(phno,q);
@@ -169,13 +170,13 @@ void customer::modifycust_data(int n1,char nm[15],char add[15],char q[15])
                   break;
             }
             if(strlen(tmpnm3)==0)
-            { 
+            {
                   flag=0;
                   break;
             }
       }
       if(flag==1)
-      { 
+      {
             strcpy(phno,tmpnm3);
       }
       cout<<"========================================================================="<<endl;
@@ -341,7 +342,7 @@ void modify_cust_record(int n)
             while(File.read((char *) &cust, sizeof(customer)))
             {
                   if(cust.getcustid()==n)
-                  { 
+                  {
                         fpos1=(int)File.tellg();
                         break;
                   }
@@ -521,15 +522,15 @@ class product
              cout<<"========================================================================"<<endl;
              cout<<"PRODUCT NO: ";
              cout<<prodid<<endl;
-             cout<<"NAME OF PRODUCT:"<<endl;
+             cout<<"NAME OF PRODUCT: ";
              cout<<name<<endl;
-             cout<<"COMPANY:"<<endl;
+             cout<<"COMPANY: ";
              cout<<company<<endl;
-             cout<<"PRODUCT PRICE:"<<endl;
+             cout<<"PRODUCT PRICE: ";
              cout<<price<<endl;
-             cout<<"DISCOUNT:"<<endl;
+             cout<<"DISCOUNT%: ";
              cout<<dis<<"%"<<endl;
-             cout<<"QUANTITY:"<<endl;
+             cout<<"QUANTITY: ";
              cout<<qty<<endl;
              cout<<"========================================================================"<<endl;
        }
@@ -567,7 +568,7 @@ class product
       {
           qty=q21;
       }
-}; 
+};
 //class ends here
 // global declaration for stream object, object
 //modify product
@@ -592,13 +593,13 @@ void product::modifydata(int n1,char snm[15],char companynm[15],int q)
                 break;
             }
             if(strlen(tmpnm)==0)
-            {  
+            {
                   flag=0;
                   break;
             }
        }
        if(flag==1)
-       { 
+       {
             strcpy(name,tmpnm);
        }
        strcpy(company,companynm);
@@ -616,13 +617,13 @@ void product::modifydata(int n1,char snm[15],char companynm[15],int q)
                   break;
             }
             if(strlen(tmpnm2)==0)
-            { 
+            {
                   flag=0;
                   break;
             }
       }
       if(flag==1)
-      { 
+      {
             strcpy(company,tmpnm2);
       }
       //Modifying function ends here
@@ -639,13 +640,13 @@ void product::modifydata(int n1,char snm[15],char companynm[15],int q)
                   break;
             }
             else
-            { 
+            {
                   flag=0;
                   break;
             }
       }
       if(flag==1)
-      { 
+      {
             price=tmppr;
       }
       cout<<"CHANGE QUANTITY:"<<endl;
@@ -653,7 +654,7 @@ void product::modifydata(int n1,char snm[15],char companynm[15],int q)
       cin>>tmpqty;
       qty=q;
       qty=qty+tmpqty;
-      cout<<"DISCOUNT:"<<endl;
+      cout<<"DISCOUNT%:"<<endl;
       float tmpdis=0;
       cin>>tmpdis;
       dis=tmpdis;
@@ -730,7 +731,7 @@ void display_sp(int n)
 }
 //Function before place order and then call place order function
 int before_order()
-{ 
+{
       int f=-1,num=0;
       customer cust;
       intromain();
@@ -821,7 +822,7 @@ void place_order()
              cout<<total<<endl;
              yy++;
              cout<<"TAX%: ";
-             cout<<"+"<<ttaxt<<"%"endl;
+             cout<<"+"<<ttaxt<<"%"<<endl;
              yy++;
              cout<<"----------------------------";
              yy++;
@@ -892,7 +893,7 @@ void admin_menu1()
             case '1':
                   write_customer();
                   break;
-            case '2': 
+            case '2':
                   cust_tabular();
                   break;
             case '3':
@@ -913,7 +914,8 @@ void admin_menu1()
                   cin>>num;
                   deletecust_record(num);
                   break;
-            case '6': 
+            case '6':
+                  mainMenu();
                   break;
             default:
                   cout<<"\a";
@@ -941,7 +943,7 @@ void admin_menu()
             case '1':
                   write_book();
                   break;
-            case '2': 
+            case '2':
                   prod_tabular();//display_all();
                   break;
             case '3':
@@ -962,18 +964,26 @@ void admin_menu()
                   cin>>num;
                   delete_record(num);
                   break;
-            case '6': 
+            case '6':
+                  mainMenu();
                   break;
             default:
                   cout<<"\a";
                   admin_menu();
       }
 }
+
 // THE MAIN FUNCTION OF PROGRAM
 int main()
 {
-      char ch;
+      //char ch;
       intro();
+      mainMenu();
+      return 0;
+}
+//function for main menu
+ void mainMenu(){
+     char ch;
       do
       {
             intromain();
@@ -991,7 +1001,7 @@ int main()
                         place_order();
                         cin.get();
                         break;
-                  case '2': 
+                  case '2':
                         middleadminmenu();
                         break;
                   case '3':
@@ -1000,8 +1010,7 @@ int main()
                         cout<<"\a";
             }
       }while(ch!='3');
-      return 0;
-}
+    }
 //main intro
 void intromain()
 {
@@ -1096,7 +1105,7 @@ void modify_record(int n)
             while(File.read((char *) &st, sizeof(product)))
             {
                   if(st.retpno()==n)
-                  { 
+                  {
                         fpos=(int)File.tellg();
                         break;
                   }
@@ -1232,7 +1241,7 @@ void changeqty(int pr1,int q11)
       while(File.read((char *) &st, sizeof(product)))
       {
             if(st.retpno()==pr1)
-            { 
+            {
                   fpos=(int)File.tellg();
                   break;
             }
@@ -1249,25 +1258,25 @@ void middleadminmenu()
       char ch;
       do
       {
-            intromain();
-            cout<<"===================   CUSTOMERS' & PRODUCTS' MENU   ===================="<<endl;
-            cout<<"1. CUSTOMERS' MENU"<<endl;
-            cout<<"2. PRODUCTS' MENU"<<endl;
+            //intromain();
+            /*cout<<"===================   CUSTOMERS' & PRODUCTS' MENU   ===================="<<endl;
+            cout<<"1. CUSTOMER'S MENU"<<endl;
+            cout<<"2. PRODUCT'S MENU"<<endl;
             cout<<"3. BACK TO MAIN"<<endl;
             cout<<"========================================================================"<<endl;
-            cout<<"Please Select Your Option (1-3) "<<endl;
+            cout<<"Please Select Your Option (1-3) "<<endl;*/
             ch=cin.get();
                   switch(ch)
                   {
                         case '1':
                               admin_menu1();
                               break;
-                        case '2': 
+                        case '2':
                               admin_menu();
                               break;
-                        case '3': 
+                        case '3':
                               break;
-                        default : 
+                        default :
                               cout<<"\a";
                               admin_menu();
                   }
