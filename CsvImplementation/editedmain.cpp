@@ -821,7 +821,7 @@ void place_order()
              cout<<total<<endl;
              yy++;
              cout<<"TAX%: ";
-             cout<<"+"<<ttaxt<<"%"endl;
+             cout<<"+"<<ttaxt<<"%"<<endl;
              yy++;
              cout<<"----------------------------";
              yy++;
