@@ -87,7 +87,7 @@ public:
       }
       void showallcust(int c)
       {
-            cout<<cust_id<<setw(17)<<cname<<setw(15)<<address<<setw(30)<<phno<<endl;
+            cout<<cust_id<<setw(10)<<cname<<setw(20)<<address<<setw(35)<<phno<<endl;
       }
       void showcustdatamulti()
       {
@@ -297,7 +297,7 @@ void display_all_cust()
       cout<<"========================================================================="<<endl;
       cout<<"   ************************  CUSTOMER DETAILS  **********************    "<<endl;
       cout<<"========================================================================="<<endl;
-      cout<<"CUST.NO"<<setw(10)<<"NAME"<<setw(15)<<"ADDRESS"<<setw(30)<<"PHONE NO"<<endl;
+      cout<<"CUST.NO"<<setw(10)<<"NAME"<<setw(20)<<"ADDRESS"<<setw(35)<<"PHONE NO"<<endl;
       cout<<"========================================================================="<<endl;
 }
 //DISPLAY ALL ENDS HERE
@@ -537,7 +537,7 @@ class product
       //Function shows data tabular form
       void showall(int c)
       {
-            cout<<prodid<<setw(10)<<name<<setw(15)<<company<<setw(15)<<"Rs."<<price<<setw(15)<<qty<<setw(10)<<dis<<"%"<<endl;
+            cout<<prodid<<setw(10)<<name<<setw(20)<<company<<setw(20)<<"Rs."<<price<<setw(15)<<qty<<setw(10)<<dis<<"%"<<endl;
       }
       //ends here
       int retpno()
@@ -887,7 +887,7 @@ void admin_menu1()
       cout<<"5.DELETE CUSTOMERS RECORDS"<<endl;
       cout<<"6.BACK TO MAIN MENU"<<endl;
       cout<<"Please Enter Your Choice (1-6) "<<endl;
-      ch2=cin.get();
+      cin>>ch2;
       switch(ch2)
       {
             case '1':
@@ -937,7 +937,7 @@ void admin_menu()
       cout<<"5.DELETE PRODUCTS"<<endl;
       cout<<"6.BACK TO MAIN MENU"<<endl;
       cout<<"Please Enter Your Choice (1-6) "<<endl;
-      ch2=cin.get();
+      cin>>ch2;
       switch(ch2)
       {
             case '1':
@@ -988,18 +988,17 @@ int main()
       {
             intromain();
             cout<<"=============================   MAIN MENU   ============================"<<endl;
-            cout<<"1. PRODUCTS REPORT GENERATOR"<<endl;
-            cout<<"2. ADMINISTRATOR"<<endl;
+            cout<<"1. PLACE ORDER"<<endl;
+            cout<<"2. ADMINISTRATOR MODE"<<endl;
             cout<<"3. EXIT"<<endl;
             cout<<"========================================================================"<<endl;
             cout<<"Please Select Your Option (1-3) "<<endl;
-            ch=cin.get();
+            cin>>ch;
             switch(ch)
             {
                   case '1':
                         orderk=0;
                         place_order();
-                        cin.get();
                         break;
                   case '2':
                         middleadminmenu();
@@ -1007,7 +1006,7 @@ int main()
                   case '3':
                         exit(0);
                   default :
-                        cout<<"\a";
+                        cout<<"Please enter valid option"<<endl;
             }
       }while(ch!='3');
     }
@@ -1264,8 +1263,8 @@ void middleadminmenu()
             cout<<"2. PRODUCT'S MENU"<<endl;
             cout<<"3. BACK TO MAIN"<<endl;
             cout<<"========================================================================"<<endl;
-            cout<<"Please Select Your Option (1-3) "<<endl;*/
-            ch=cin.get();
+            cout<<"Please Select Your Option (1-3) "<<endl;
+            cin>>ch;
                   switch(ch)
                   {
                         case '1':
@@ -1275,10 +1274,10 @@ void middleadminmenu()
                               admin_menu();
                               break;
                         case '3':
+                              mainMenu();
                               break;
                         default :
-                              cout<<"\a";
-                              admin_menu();
+                              cout<<"Please enter valid option"<<endl;
                   }
       }while(ch!='3');
 }
