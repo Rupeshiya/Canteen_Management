@@ -186,7 +186,7 @@ void write_customer()
 {
       ofstream objoff;
       customer cobj;
-      objoff.open("customer.dat",ios::out|ios::app);
+      objoff.open("customer.csv",ios::out|ios::app);
       intromain();
       int r=getcustomers();
       if(r>100) //1000
@@ -207,7 +207,7 @@ int getcustomers()
       ifstream objiff;
       customer cust;
       int count=0;
-      objiff.open("customer.dat",ios::binary);
+      objiff.open("customer.csv",ios::binary);
       objiff.seekg(0,ios::beg);
       if(!objiff)
       {
@@ -233,7 +233,7 @@ void display_cust_sp(int n)
        ifstream objfp;
        customer cust;
        int flag=0;
-       objfp.open("customer.dat",ios::binary);
+       objfp.open("customer.csv",ios::binary);
        if(!objfp)
       {
             cout<<"File could not be open !! Press any Key..."<<endl;
@@ -261,7 +261,7 @@ void cust_tabular()
       int r=0,col=10;
       customer cust;
       ifstream inFile;
-      inFile.open("customer.dat",ios::binary);
+      inFile.open("customer.csv",ios::binary);
       if(!inFile)
       {
             cout<<"File could not be open !! Press any Key..."<<endl;
@@ -308,7 +308,7 @@ void modify_cust_record(int n)
       char tmpnm[50],tmpaddress[50];
       ifstream inFile;
       int fpos1=-1;
-      inFile.open("customer.dat",ios::binary);
+      inFile.open("customer.csv",ios::binary);
       if(!inFile)
       {
             cout<<"File could not be open !! Press any Key..."<<endl;
@@ -332,7 +332,7 @@ void modify_cust_record(int n)
       {
       //modifying the records starts here
             fstream File;
-            File.open("customer.dat",ios::binary|ios::in|ios::out);
+            File.open("customer.csv",ios::binary|ios::in|ios::out);
             if(!File)
             {
                   cout<<"File could not be open !! Press any Key..."<<endl;
@@ -365,7 +365,7 @@ void deletecust_record(int n)
 {
       customer cust;
       ifstream inFile;
-      inFile.open("customer.dat",ios::binary);
+      inFile.open("customer.csv",ios::binary);
       if(!inFile)
       {
             cout<<"File could not be open !! Press any Key..."<<endl;
@@ -396,8 +396,8 @@ void deletecust_record(int n)
             if (toupper(ch)=='Y')
             {
                    ofstream outFile;
-                   outFile.open("Temp2.dat",ios::binary);
-                   ifstream objiff("customer.dat",ios::binary);
+                   outFile.open("Temp2.csv",ios::binary);
+                   ifstream objiff("customer.csv",ios::binary);
                    objiff.seekg(0,ios::beg);
                    while(objiff.read((char *) &cust, sizeof(customer)))
                    {
@@ -408,8 +408,8 @@ void deletecust_record(int n)
                   }
                   outFile.close();
                   objiff.close();
-                  remove("customer.dat");
-                  rename("Temp2.dat","customer.dat");
+                  remove("customer.csv");
+                  rename("Temp2.csv","customer.csv");
                   againopenandclosecust();
                   cout<<"---------------------------Record Deleted--------------------------------"<<endl;
             }
@@ -421,7 +421,7 @@ void againopenandclosecust()
 {
       ifstream inFile;
       customer cust;
-      inFile.open("customer.dat",ios::binary);
+      inFile.open("customer.csv",ios::binary);
       if(!inFile)
       {
             cin.get();
@@ -438,7 +438,7 @@ int searchcust(int p)
       customer cust;
       int tmprt=0;
       ifstream inFile;
-      inFile.open("customer.dat",ios::binary);
+      inFile.open("customer.csv",ios::binary);
       if(!inFile)
       {
             cout<<"File could not be open !! Press any Key..."<<endl;
@@ -666,7 +666,7 @@ product pr;
 // function to write in file
 void write_book()
 {
-      fp.open("product.dat",ios::out|ios::app);
+      fp.open("product.csv",ios::out|ios::app);
       intromain();
       int rnn=getproduct();
       if(rnn>100)
@@ -686,7 +686,7 @@ int getproduct()
       ifstream objiff;
       product st;
       int count=0;
-      objiff.open("product.dat",ios::binary);
+      objiff.open("product.csv",ios::binary);
       objiff.seekg(0,ios::beg);
       if(!objiff)
       {
@@ -708,7 +708,7 @@ int getproduct()
 void display_sp(int n)
 {
       int flag=0;
-      fp.open("product.dat",ios::in);
+      fp.open("product.csv",ios::in);
       if(!fp)
       {
             cout<<"File could not be open !! Press any Key..."<<endl;
@@ -738,7 +738,7 @@ int before_order()
       cout<<"ENTER THE CUSTOMER ID TO BE SEARCHED:"<<endl;
       cin>>num;
       ifstream inFile;
-      inFile.open("customer.dat",ios::binary);
+      inFile.open("customer.csv",ios::binary);
       if(!inFile)
       {
             cout<<"File could not be open !! Press any Key..."<<endl;
@@ -839,7 +839,7 @@ void place_order()
 //Fuction to copy all record to a structure
 void copyme(int k2,order order1[50],int q1,int &c2)
 {
-      ifstream objiff2("product.dat",ios::binary);
+      ifstream objiff2("product.csv",ios::binary);
       product bk1;
       objiff2.seekg(k2-sizeof(product));
       objiff2.read((char*)&bk1,sizeof(product));
@@ -1026,7 +1026,7 @@ void prod_tabular()
       int r=0,col=10;
       product st;
       ifstream inFile;
-      inFile.open("product.dat",ios::binary);
+      inFile.open("product.csv",ios::binary);
       if(!inFile)
       {
             cout<<"File could not be open !! Press any Key..."<<endl;
@@ -1072,7 +1072,7 @@ void modify_record(int n)
       char tmpnm[50],tmpcompany[50];
       ifstream inFile;
       int fpos=-1;
-      inFile.open("product.dat",ios::binary);
+      inFile.open("product.csv",ios::binary);
       if(!inFile)
       {
             cout<<"File could not be open !! Press any Key..."<<endl;
@@ -1095,7 +1095,7 @@ void modify_record(int n)
       else
       {
             fstream File;
-            File.open("product.dat",ios::binary|ios::in|ios::out);
+            File.open("product.csv",ios::binary|ios::in|ios::out);
             if(!File)
             {
                   cout<<"File could not be open !! Press any Key..."<<endl;
@@ -1127,7 +1127,7 @@ void delete_record(int n)
 {
       product st;
       ifstream inFile;
-      inFile.open("product.dat",ios::binary);
+      inFile.open("product.csv",ios::binary);
       if(!inFile)
       {
             cout<<"File could not be open !! Press any Key..."<<endl;
@@ -1157,8 +1157,8 @@ void delete_record(int n)
             if (toupper(ch)=='Y')
             {
                   ofstream outFile;
-                  outFile.open("Temp1.dat",ios::binary);
-                  ifstream objiff("product.dat",ios::binary);
+                  outFile.open("Temp1.csv",ios::binary);
+                  ifstream objiff("product.csv",ios::binary);
                   objiff.seekg(0,ios::beg);
                   while(objiff.read((char *) &st, sizeof(product)))
                   {
@@ -1169,8 +1169,8 @@ void delete_record(int n)
                   }
                   outFile.close();
                   objiff.close();
-                  remove("product.dat");
-                  rename("Temp1.dat","product.dat");
+                  remove("product.csv");
+                  rename("Temp1.csv","product.csv");
                   againopenandclose();
                   cout<<"------------------------------Record Deleted----------------------------"<<endl;
             }
@@ -1181,7 +1181,7 @@ void againopenandclose()
 {
       ifstream inFile;
       product st;
-      inFile.open("product.dat",ios::binary);
+      inFile.open("product.csv",ios::binary);
       if(!inFile)
       {
             cin.get();
@@ -1198,7 +1198,7 @@ int search(int p)
       product st;
       int tmprt=0;
       ifstream inFile;
-      inFile.open("product.dat",ios::binary);
+      inFile.open("product.csv",ios::binary);
       if(!inFile)
       {
             cout<<"File could not be open !! Press any Key..."<<endl;
@@ -1231,7 +1231,7 @@ void changeqty(int pr1,int q11)
       product st;
       int fpos=-1;
       fstream File;
-      File.open("product.dat",ios::binary|ios::in|ios::out);
+      File.open("product.csv",ios::binary|ios::in|ios::out);
       if(!File)
       {
             cout<<"File could not be open !! Press any Key..."<<endl;
@@ -1258,13 +1258,13 @@ void middleadminmenu()
       char ch;
       do
       {
-            //intromain();
-            /*cout<<"===================   CUSTOMERS' & PRODUCTS' MENU   ===================="<<endl;
+            intromain();
+            cout<<"===================   CUSTOMERS' & PRODUCTS' MENU   ===================="<<endl;
             cout<<"1. CUSTOMER'S MENU"<<endl;
             cout<<"2. PRODUCT'S MENU"<<endl;
             cout<<"3. BACK TO MAIN"<<endl;
             cout<<"========================================================================"<<endl;
-            cout<<"Please Select Your Option (1-3) "<<endl;*/
+            cout<<"Please Select Your Option (1-3) "<<endl;
             ch=cin.get();
                   switch(ch)
                   {
