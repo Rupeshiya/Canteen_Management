@@ -1264,7 +1264,7 @@ void middleadminmenu()
             cout<<"2. PRODUCT'S MENU"<<endl;
             cout<<"3. BACK TO MAIN"<<endl;
             cout<<"========================================================================"<<endl;
-            cout<<"Please Select Your Option (1-3) "<<endl;
+            cout<<"Please Select Your Option (1-3) "<<endl;*/
             ch=cin.get();
                   switch(ch)
                   {
