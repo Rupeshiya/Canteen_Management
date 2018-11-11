@@ -37,8 +37,8 @@ void changeqty(int pr1,int q11);
 class customer
 {
       int cust_id;
-      char cname[25];
-      char address[35];
+      char cname[100];
+      char address[100];
       char phno[15];
 public:
       void modifycust_data(int n1,char nm[15],char add[15],char q[15]);
@@ -66,7 +66,7 @@ public:
             cout<<cust_id<<endl;
             cout<<"NAME OF CUSTOMER:"<<endl;
             cin>>cname;
-            cout<<"ADDRESS:"<<endl;
+            cout<<"ADDRESS"<<endl;
             cin>>address;
             cout<<"PHONE NO.:"<<endl;
             cin>>phno;
@@ -87,7 +87,7 @@ public:
       }
       void showallcust(int c)
       {
-            cout<<cust_id<<setw(10)<<cname<<setw(20)<<address<<setw(35)<<phno<<endl;
+            cout<<"   "<<cust_id<<setw(10)<<cname<<setw(20)<<address<<setw(25)<<phno<<endl;
       }
       void showcustdatamulti()
       {
@@ -297,7 +297,7 @@ void display_all_cust()
       cout<<"========================================================================="<<endl;
       cout<<"   ************************  CUSTOMER DETAILS  **********************    "<<endl;
       cout<<"========================================================================="<<endl;
-      cout<<"CUST.NO"<<setw(10)<<"NAME"<<setw(20)<<"ADDRESS"<<setw(35)<<"PHONE NO"<<endl;
+      cout<<"CUST.NO"<<setw(7)<<"NAME"<<setw(25)<<"ADDRESS"<<setw(24)<<"PHONE NO"<<endl;
       cout<<"========================================================================="<<endl;
 }
 //DISPLAY ALL ENDS HERE
@@ -794,40 +794,33 @@ void place_order()
                   cout<<"Do you want purchase more (Yes[ y or Y ] or NO [n or N])"<<endl;
                   cin>>ch;
             }while(ch=='y' || ch=='Y');
-            cout<<"Thank You For Placing The Order  ........"<<endl;
+            cout<<"Thank You For Placing The Order  ........"<<endl<<endl;
             cin.get();
-            intromain();
+            cout<<"------------------------------------------------------------------------"<<endl;
             cout<<"*****************************   INVOICE   ******************************"<<endl;
-            cout<<"PR.No."<<setw(12)<<"NAME"<<setw(10)<<"Qty"<<setw(15)<<"Price"<<setw(13)<<"Amount"<<setw(23)<<"Amount- discount"<<endl;
+            cout<<"PR.No."<<setw(7)<<"NAME"<<setw(10)<<"Qty"<<setw(15)<<"Price"<<setw(13)<<"Amount"<<setw(15)<<"Amount - discount"<<endl;
             cout<<"------------------------------------------------------------------------"<<endl;
             int yy=8;
             for(int x=0;x<c;x++)
             {
                   cout<<o1[x].prodid1<<endl;
-                  cout<<o1[x].pname1<<endl;
-                  cout<<o1[x].qty1<<endl;
-                  cout<<"Rs."<<o1[x].price1<<endl;
                   amt=o1[x].qty1*o1[x].price1;
-                  cout<<"Rs."<<amt<<endl;
                   damt=amt-o1[x].dis1;
-                  cout<<"Rs."<<damt<<endl;
+                  cout<<o1[x].prodid1<<setw(7)<<o1[x].pname1<<setw(10)<<o1[x].qty1<<setw(15)<<"Rs."<<o1[x].price1<<setw(13)<<"Rs."<<amt<<setw(15)<<"Rs."<<damt<<endl;
                   total+=damt;
                    //ttaxt+=o1[x].tax1;
                   yy++;
              }
-             ttaxt=5;
+             ttaxt=18;
              cout<<"-------------------------------------------------------------------------"<<endl;
              yy++;
-             cout<<"TOTAL: ";
-             cout<<total<<endl;
+             cout<<"TOTAL AMOUNT : "<<total<<endl;
              yy++;
-             cout<<"TAX%: ";
-             cout<<"+"<<ttaxt<<"%"<<endl;
+             cout<<"TAX%: "<<"+"<<ttaxt<<"%"<<endl;
              yy++;
-             cout<<"----------------------------";
+             cout<<"-------------------------------------------------------------------------";
              yy++;
-             cout<<"NET TOTAL: ";
-             cout<<"Rs."<<(total+((ttaxt*total)/100))<<endl;
+             cout<<"NET TOTAL: "<<"Rs."<<(total+((ttaxt*total)/100))<<endl;
              yy++;
              cout<<"-------------------------------------------------------------------------"<<endl;
       }
