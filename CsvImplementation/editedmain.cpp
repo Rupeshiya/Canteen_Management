@@ -19,6 +19,7 @@ struct order
 }o1[50];
 int orderk=0;
 void mainMenu();
+void write_customer1();
 void middleadminmenu();
 void copyme(int k,order order1[],int q1,int &c2);
 void intromain();
@@ -27,6 +28,9 @@ int getcustomers();
 void display_all();
 void display_all_cust();
 void prod_tabular();
+void admin_menu3();
+void admin_menu4();
+void admin_menu5();
 void modify_record(int n);
 void delete_record(int n);
 void againopenandclose();
@@ -60,7 +64,7 @@ public:
       }
       void cust_input(int custid)
       {
-            cout<<"========================================================================="<<endl;
+            cout<<"-------------------------------------------------------------------------"<<endl;
             cout<<"CUSTOMER NO: ";
             cust_id=custid;
             cout<<cust_id<<endl;
@@ -70,11 +74,11 @@ public:
             cin>>address;
             cout<<"PHONE NO.:"<<endl;
             cin>>phno;
-            cout<<"========================================================================="<<endl;
+            cout<<"-------------------------------------------------------------------------"<<endl;
       }
       void show_cust()
       {
-            cout<<"========================================================================="<<endl;
+            cout<<"-------------------------------------------------------------------------"<<endl;
             cout<<"CUSTOMER NO:"<<endl;
             cout<<cust_id<<endl;
             cout<<"NAME OF CUSTOMER:"<<endl;
@@ -83,7 +87,7 @@ public:
             cout<<address<<endl;
             cout<<"PHONE NO.:"<<endl;
             cout<<phno<<endl;
-            cout<<"========================================================================="<<endl;
+            cout<<"-------------------------------------------------------------------------"<<endl;
       }
       void showallcust(int c)
       {
@@ -91,7 +95,7 @@ public:
       }
       void showcustdatamulti()
       {
-             cout<<"========================================================================="<<endl;
+             cout<<"-------------------------------------------------------------------------"<<endl;
              cout<<"CUSTOMER NO:"<<endl;
              cout<<cust_id<<endl;
              cout<<"NAME OF CUSTOMER:"<<endl;
@@ -100,7 +104,7 @@ public:
              cout<<address<<endl;
              cout<<"PHONE NO.:"<<endl;
              cout<<phno<<endl;
-             cout<<"========================================================================="<<endl;
+             cout<<"-------------------------------------------------------------------------"<<endl;
       }
 };
 void customer::modifycust_data(int n1,char nm[15],char add[15],char q[15])
@@ -187,7 +191,7 @@ void write_customer()
       ofstream objoff;
       customer cobj;
       objoff.open("customer.csv",ios::out|ios::app);
-      intromain();
+      //intromain();
       int r=getcustomers();
       if(r>100) //1000
       {
@@ -297,8 +301,8 @@ void display_all_cust()
       cout<<"========================================================================="<<endl;
       cout<<"   ************************  CUSTOMER DETAILS  **********************    "<<endl;
       cout<<"========================================================================="<<endl;
-      cout<<"CUST.NO"<<setw(7)<<"NAME"<<setw(25)<<"ADDRESS"<<setw(24)<<"PHONE NO"<<endl;
-      cout<<"========================================================================="<<endl;
+      cout<<"CUST.NO"<<setw(7)<<"NAME"<<setw(20)<<"ADDRESS"<<setw(24)<<"PHONE NO"<<endl;
+      cout<<"-------------------------------------------------------------------------"<<endl;
 }
 //DISPLAY ALL ENDS HERE
 //FUNCTION TO MODIFY customer RECORD
@@ -450,7 +454,6 @@ int searchcust(int p)
       {
             if(cust.getcustid()==p)
             {
-                   intromain();
                    cust.showcustdatamulti();
                    flag=1;
                    tmprt=(int)inFile.tellg();
@@ -484,7 +487,7 @@ class product
       void modifydata(int n1,char snm[15],char companynm[15],int q);
       void showdatamulti()
       {
-             cout<<"========================================================================="<<endl;
+             cout<<"-------------------------------------------------------------------------"<<endl;
              cout<<"PRODUCT NO:"<<endl;
              cout<<prodid<<endl;
              cout<<"NAME OF PRODUCT:"<<endl;
@@ -497,11 +500,11 @@ class product
              cout<<qty<<endl;
              cout<<"DISCOUNT"<<endl;
              cout<<dis<<endl;
-             cout<<"========================================================================"<<endl;
+             cout<<"-------------------------------------------------------------------------"<<endl;
       }
       void create_prod(int rn1)
       {
-             cout<<"========================================================================"<<endl;
+             cout<<"-------------------------------------------------------------------------"<<endl;
              cout<<"PRODUCT NO: ";
              prodid=rn1;
              cout<<prodid<<endl;
@@ -515,11 +518,11 @@ class product
              cin>>price;
              cout<<"DISCOUNT:"<<endl;
              cin>>dis;
-             cout<<"========================================================================"<<endl;
+             cout<<"-------------------------------------------------------------------------"<<endl;
       }
       void show_prod()
       {
-             cout<<"========================================================================"<<endl;
+             cout<<"-------------------------------------------------------------------------"<<endl;
              cout<<"PRODUCT NO: ";
              cout<<prodid<<endl;
              cout<<"NAME OF PRODUCT: ";
@@ -532,7 +535,7 @@ class product
              cout<<dis<<"%"<<endl;
              cout<<"QUANTITY: ";
              cout<<qty<<endl;
-             cout<<"========================================================================"<<endl;
+             cout<<"-------------------------------------------------------------------------"<<endl;
        }
       //Function shows data tabular form
       void showall(int c)
@@ -734,8 +737,7 @@ int before_order()
 {
       int f=-1,num=0;
       customer cust;
-      intromain();
-      cout<<"ENTER THE CUSTOMER ID TO BE SEARCHED:"<<endl;
+      cout<<"ENTER THE CUSTOMER ID TO BILL:"<<endl;
       cin>>num;
       ifstream inFile;
       inFile.open("customer.csv",ios::binary);
@@ -749,7 +751,6 @@ int before_order()
       {
             if(cust.getcustid()==num)
             {
-                   intromain();
                    cust.showcustdatamulti();
                    f=1;
                    //tmprt=(int)inFile.tellg();
@@ -770,8 +771,8 @@ void place_order()
       int value=before_order();
       if(value==1)
       {
+            cout<<endl;
             prod_tabular();
-            intromain();
             cout<<"========================================================================"<<endl;
             cout<<"                             PLACE YOUR ORDER                           "<<endl;
             cout<<"========================================================================"<<endl;
@@ -796,14 +797,13 @@ void place_order()
             }while(ch=='y' || ch=='Y');
             cout<<"Thank You For Placing The Order  ........"<<endl<<endl;
             cin.get();
-            cout<<"------------------------------------------------------------------------"<<endl;
+            cout<<"========================================================================\n"<<endl;
             cout<<"*****************************   INVOICE   ******************************"<<endl;
-            cout<<"PR.No."<<setw(7)<<"NAME"<<setw(10)<<"Qty"<<setw(15)<<"Price"<<setw(13)<<"Amount"<<setw(15)<<"Amount - discount"<<endl;
             cout<<"------------------------------------------------------------------------"<<endl;
+            cout<<"PR.No."<<setw(7)<<"NAME"<<setw(10)<<"Qty"<<setw(15)<<"Price"<<setw(13)<<"Amount"<<setw(20)<<"Amount - discount"<<endl;
             int yy=8;
             for(int x=0;x<c;x++)
             {
-                  cout<<o1[x].prodid1<<endl;
                   amt=o1[x].qty1*o1[x].price1;
                   damt=amt-o1[x].dis1;
                   cout<<o1[x].prodid1<<setw(7)<<o1[x].pname1<<setw(10)<<o1[x].qty1<<setw(15)<<"Rs."<<o1[x].price1<<setw(13)<<"Rs."<<amt<<setw(15)<<"Rs."<<damt<<endl;
@@ -814,15 +814,19 @@ void place_order()
              ttaxt=18;
              cout<<"-------------------------------------------------------------------------"<<endl;
              yy++;
-             cout<<"TOTAL AMOUNT : "<<total<<endl;
+             cout<<"\t\t\tTOTAL AMOUNT :    "<<"Rs."<<total<<endl;
              yy++;
-             cout<<"TAX%: "<<"+"<<ttaxt<<"%"<<endl;
-             yy++;
-             cout<<"-------------------------------------------------------------------------";
-             yy++;
-             cout<<"NET TOTAL: "<<"Rs."<<(total+((ttaxt*total)/100))<<endl;
+             cout<<"\t\t\tCGST         :    "<<"+"<<ttaxt/2<<"%"<<endl;
+             cout<<"\t\t\tSGST         :    "<<"+"<<ttaxt/2<<"%"<<endl;
              yy++;
              cout<<"-------------------------------------------------------------------------"<<endl;
+             yy++;
+             cout<<"\t\t\tNET TOTAL    :    "<<"Rs."<<(total+((ttaxt*total)/100))<<endl;
+             yy++;
+             cout<<"-------------------------------------------------------------------------"<<endl;
+             cout<<"\n\n\t   WE ARE EAGERLY LOOKING FORWARD TO SERVE YOU AGAIN\n";
+             cout<<"\n\t\t\t    HAVE A NICE DAY !\n\n";
+             cout<<"=========================================================================\n"<<endl;
       }
       else
       {
@@ -879,7 +883,8 @@ void admin_menu1()
       cout<<"4.MODIFY CUSTOMERS RECORDS"<<endl;
       cout<<"5.DELETE CUSTOMERS RECORDS"<<endl;
       cout<<"6.BACK TO MAIN MENU"<<endl;
-      cout<<"Please Enter Your Choice (1-6) "<<endl;
+      cout<<"7.CONTINUE TO BILL"<<endl;
+      cout<<"Please Enter Your Choice (1-7) "<<endl;
       cin>>ch2;
       switch(ch2)
       {
@@ -888,6 +893,7 @@ void admin_menu1()
                   break;
             case '2':
                   cust_tabular();
+                  admin_menu1();
                   break;
             case '3':
                   intromain();
@@ -910,9 +916,12 @@ void admin_menu1()
             case '6':
                   mainMenu();
                   break;
+            case '7':
+                  orderk=0;
+                  place_order();
+                  break;
             default:
-                  cout<<"\a";
-                  admin_menu1();
+                  cout<<"Please enter valid option"<<endl;
       }
 }
 //CUSTOMERS MENU FUNCTION ENDS HERE
@@ -975,6 +984,115 @@ int main()
       return 0;
 }
 //function for main menu
+void admin_menu3()
+{
+      char ch2;
+      int num;
+      cout<<"\n-------------------------------------------------------------------------"<<endl;
+      cout<<"\t\tE N T E R   C U S T O M E R   D E T A I L S :\n";
+      cout<<"-------------------------------------------------------------------------"<<endl;
+      cout<<"1.CREATE NEW CUSTOMER DETAILS"<<endl;
+      cout<<"2.DISPLAY ALL CUSTOMERS DETAILS"<<endl;
+      cout<<"3.BACK TO MAIN MENU"<<endl;
+      cout<<"4.CONTINUE TO BILL\n"<<endl;
+      cout<<"Please Enter Your Choice (1-4) "<<endl;
+      cin>>ch2;
+      switch(ch2)
+      {
+            case '1':
+                  write_customer1();
+                  break;
+            case '2':
+                  cust_tabular();
+                  admin_menu4();
+                  break;
+            case '3':
+                  mainMenu();
+                  break;
+            case '4':
+                  orderk=0;
+                  place_order();
+                  break;
+            default:
+                  cout<<"Please enter valid option"<<endl;
+      }
+}
+void admin_menu4()
+{
+      char ch2;
+      int num;
+      cout<<"\n-------------------------------------------------------------------------"<<endl;
+      cout<<"\t\tC H O O S E   N E X T   O P T I O N S:\n";
+      cout<<"-------------------------------------------------------------------------"<<endl;
+      cout<<"1.CREATE NEW CUSTOMER DETAILS"<<endl;
+      cout<<"2.BACK TO MAIN MENU"<<endl;
+      cout<<"3.CONTINUE TO BILL\n"<<endl;
+      cout<<"Please Enter Your Choice (1-3) "<<endl;
+      cin>>ch2;
+      switch(ch2)
+      {
+            case '1':
+                  write_customer1();
+                  break;
+            case '2':
+                  mainMenu();
+                  break;
+            case '3':
+                  orderk=0;
+                  place_order();
+                  break;
+            default:
+                  cout<<"Please enter valid option"<<endl;
+      }
+}
+void admin_menu5()
+{
+      char ch2;
+      int num;
+      cout<<"\n-------------------------------------------------------------------------"<<endl;
+      cout<<"\t\tC H O O S E   N E X T   O P T I O N S:\n";
+      cout<<"-------------------------------------------------------------------------"<<endl;
+      cout<<"1.DISPLAY ALL CUSTOMERS DETAILS"<<endl;
+      cout<<"2.BACK TO MAIN MENU"<<endl;
+      cout<<"3.CONTINUE TO BILL\n"<<endl;
+      cout<<"Please Enter Your Choice (1-3) "<<endl;
+      cin>>ch2;
+      switch(ch2)
+      {
+            case '1':
+                  cust_tabular();
+                  admin_menu4();
+                  break;
+            case '2':
+                  mainMenu();
+                  break;
+            case '3':
+                  orderk=0;
+                  place_order();
+                  break;
+            default:
+                  cout<<"Please enter valid option"<<endl;
+      }
+}
+void write_customer1()
+{
+      ofstream objoff;
+      customer cobj;
+      objoff.open("customer.csv",ios::out|ios::app);
+      intromain();
+      int r=getcustomers();
+      if(r>100) //1000
+      {
+            r=1; // r=100
+      }
+       cobj.cust_input(r);
+       objoff.write((char*)&cobj,sizeof(customer));
+       objoff.close();
+       cout<<"***********************   CUSTOMER RECORD SAVED   ***********************"<<endl;
+       cin.ignore();
+       cin.get();
+       admin_menu5();
+}
  void mainMenu(){
      char ch;
       do
@@ -990,8 +1108,7 @@ int main()
             switch(ch)
             {
                   case '1':
-                        orderk=0;
-                        place_order();
+                        admin_menu3();
                         break;
                   case '2':
                         middleadminmenu();
@@ -1007,9 +1124,9 @@ int main()
 void intromain()
 {
       cout<<endl;
-      cout<<"------------------------------------------------------------------------"<<endl;
-      cout<<"********   C A N T E E N  M A N A G E M E N T  S Y S T E M   ***********"<<endl;
-      cout<<"------------------------------------------------------------------------"<<endl;
+      cout<<"-------------------------------------------------------------------------"<<endl;
+      cout<<"*********   C A N T E E N  M A N A G E M E N T  S Y S T E M   ***********"<<endl;
+      cout<<"-------------------------------------------------------------------------"<<endl;
       cout<<endl;
 }
 //FUNCTION TO DISPLAY ALL THE PRODUCT TABULAR FORM
@@ -1050,12 +1167,11 @@ void prod_tabular()
 //Function to display all the records of product
 void display_all()
 {
-      intromain();
       cout<<"========================================================================"<<endl;
       cout<<"*************************   PRODUCTS DETAILS   *************************"<<endl;
       cout<<"========================================================================"<<endl;
       cout<<"PROD.NO"<<setw(10)<<"NAME"<<setw(15)<<"COMPANY"<<setw(15)<<"PRICE"<<setw(15)<<"QUANTITY"<<setw(10)<<"DISCOUNT"<<endl;
-      cout<<"========================================================================"<<endl;
+      cout<<"------------------------------------------------------------------------"<<endl;
 }
 //FUNCTION TO MODIFY RECORD
 void modify_record(int n)
@@ -1202,7 +1318,6 @@ int search(int p)
       {
             if(st.retpno()==p)
             {
-                  intromain();
                   st.showdatamulti();
                   flag=1;
                   tmprt=(int)inFile.tellg();
