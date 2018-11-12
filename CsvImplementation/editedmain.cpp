@@ -1092,16 +1092,8 @@ void changeqty(int pr1,int q11)
       else
       {
             cout<<"Insufficient quantity !"<<endl;
-            cout<<"Do you want to place the order again ? [y / n]"<<endl;
-            char ans;
-            cin>>ans;
-            if(ans == 'y')
-            {
-                  place_order();
-            } else
-            {
-                  cout<<"See you again !"<<endl;
-            }
+            cout<<"Please reinitiate the billing process.Thank you."<<endl;
+            administratormenu();
       }
 	  File.write((char *) &st, sizeof(product));
       File.close();
@@ -1415,6 +1407,17 @@ int Login()
 	cout<<"2.LOGIN"<<endl;
 	cout<<"3.EXIT"<<endl;
 	string p,q,w;
+	int ranarr[2];
+	int it;
+	int tmp1;
+	for(it=0;it<2;it++)
+	{
+		tmp1=rand()%10;
+		ranarr[it]=tmp1;
+	}
+	int summation;
+	summation=ranarr[0]+ranarr[1];
+	int suminput;
 	int x;string s;
 	cin>>x;
 	if(x==1)
@@ -1425,7 +1428,11 @@ int Login()
   			cin>>s;
   			cout<<"ENTER YOUR PASSWORD"<<endl;
   			cin>>p;
-  			s=s+p;
+  			cout<<ranarr[0]<<" + "<<ranarr[1]<<" = ";
+  			cin>>suminput;
+  			if(suminput==summation)
+  			{
+  				s=s+p;
   			ifstream fin;
   			string line;
   			int offset=0;
@@ -1451,21 +1458,33 @@ int Login()
   			fout<<s+"\n";
   			fout.close();
   			goto label;
+			}
+			else
+			{
+				cout<<"Are you a robot ???"<<endl;
+				cout<<"Press any key to continue...";
+				getchar();
+				getchar();
+				goto label;
+			}
 	}
-	else if(x==2){
- 		string line;
-		system("cls");
- 		ifstream fin;
-  		int offset=0;
-  		cout<<"ENTER YOUR USERNAME"<<endl;
-  		cin>>q;
-  		cout<<"ENTER YOUR PASSWORD"<<endl;
-  		cin>>w;
-  		q=q+w;
-  		fin.open("myfile.txt");
-  		if(fin.is_open())
-  		{
-  			while(!fin.eof())
+		else if(x==2){
+
+			string line;
+			system("cls");
+  			ifstream fin;
+  			int offset=0;
+  			cout<<"ENTER YOUR USERNAME"<<endl;
+  			cin>>q;
+  			cout<<"ENTER YOUR PASSWORD"<<endl;
+  			cin>>w;
+  			cout<<ranarr[0]<<" + "<<ranarr[1]<<" = ";
+  			cin>>suminput;
+  			if(suminput==summation)
+            {
+               q=q+w;
+  			fin.open("myfile.txt");
+  			if(fin.is_open())
   			{
   				getline(fin,line);
 				if(line.find(q,0)!=-1)
@@ -1473,19 +1492,20 @@ int Login()
 					cout<<"You are logged in !!"<<endl;
 					offset=1;
                     mainMenu();
-					break;
+					//break;
                 }
 			}
-			if(offset==0)
+
+  			fin.close();	
+			}
+			else
 			{
-				cout<<"Sorry, You are unauthorised!!"<<endl;
-				cout<<"Press 1 and enter, to go to Home page"<<endl;
-				char o;
-				cin>>o;
+				cout<<"Are you a robot ???"<<endl;
+				cout<<"Press any key to continue...";
+				getchar();
+				getchar();
 				goto label;
 			}
-		}
-  		fin.close();
 	}
 	else if(x==3)
 	{
