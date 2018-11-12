@@ -8,6 +8,7 @@
 #include<fstream>
 #include<sstream>
 #include<typeinfo>
+#include<windows.h>
 using namespace std;
 struct order
 {
@@ -62,6 +63,7 @@ public:
       {
             return phno;
       }
+      //function for taking input from customer
       void cust_input(int custid)
       {
             cout<<"-------------------------------------------------------------------------"<<endl;
@@ -76,6 +78,7 @@ public:
             cin>>phno;
             cout<<"-------------------------------------------------------------------------"<<endl;
       }
+      //function to show customer details
       void show_cust()
       {
             cout<<"-------------------------------------------------------------------------"<<endl;
@@ -107,6 +110,7 @@ public:
              cout<<"-------------------------------------------------------------------------"<<endl;
       }
 };
+//function to modify
 void customer::modifycust_data(int n1,char nm[15],char add[15],char q[15])
 {
       char tmpnm[40],tmpnm2[40],tmpnm3[15];
@@ -682,7 +686,7 @@ void product::modifydata(int n1,char snm[15],char companynm[15],int q)
             strcpy(company,tmpnm2);
       }
       cout<<"PRICE:"<<endl;
-      //add the line to display price 
+      //add the line to display price
       float tmppr=0;
       char yes4,yes3,yes5;
       cout<<"Want to change the price of product ? (Yes[ y or Y ] or NO [n or N])"<<endl;
@@ -1292,14 +1296,7 @@ void admin_menu()
       }
 }
 
-// THE MAIN FUNCTION OF PROGRAM
-int main()
-{
-      //char ch;
-      intro();
-      mainMenu();
-      return 0;
-}
+
 //function for main menu
 void admin_menu3()
 {
@@ -1455,4 +1452,101 @@ void middleadminmenu()
                               cout<<"Please enter valid option"<<endl;
                   }
       }while(ch!='3');
+}
+int Login(){
+	label:
+	system("cls");
+      intromain();
+	cout<<"1.REGISTER"<<endl;
+	cout<<"2.LOGIN"<<endl;
+	cout<<"3.EXIT"<<endl;
+	string p,q,w;
+	int x;string s;
+	cin>>x;
+	if(x==1){
+
+			system("cls");
+  			ofstream fout;
+  			cout<<"ENTER YOUR USERNAME"<<endl;
+  			cin>>s;
+  			cout<<"ENTER YOUR PASSWORD"<<endl;
+  			cin>>p;
+  			s=s+p;
+  			ifstream fin;
+  			string line;
+  			int offset=0;
+  			fin.open("myfile.txt");
+  			if(fin.is_open())
+  			{
+  				while(!fin.eof())
+  				{
+  					getline(fin,line);
+					if(line.find(s,0)!=-1)
+					{
+						cout<<"sorry! this username is not available"<<endl;
+						cout<<"Press any key to go to Home Page"<<endl;
+						char kk;
+						cin>>kk;
+						goto label;
+						//break;
+					}
+				}
+			}
+  			fin.close();
+  			fout.open("myfile.txt",ios::app);
+  			fout<<s+"\n";
+  			fout.close();
+  			goto label;
+	}
+		else if(x==2){
+
+			string line;
+			system("cls");
+  			ifstream fin;
+  			int offset=0;
+  			cout<<"ENTER YOUR USERNAME"<<endl;
+  			cin>>q;
+  			cout<<"ENTER YOUR PASSWORD"<<endl;
+  			cin>>w;
+  			q=q+w;
+  			fin.open("myfile.txt");
+  			if(fin.is_open())
+  			{
+  				while(!fin.eof())
+  				{
+  					getline(fin,line);
+					if(line.find(q,0)!=-1)
+					{
+						cout<<"you are logged in !!"<<endl;
+						offset=1;
+                        mainMenu();
+						break;
+                    }
+				}
+				if(offset==0)
+				{
+					cout<<"sorry you are unauthorised!!"<<endl;
+					cout<<"Press 1 and enter to go to home page"<<endl;
+					//getch();
+					char o;
+					cin>>o;
+					goto label;
+								  }
+			}
+  			fin.close();
+	}
+	else if(x==3){
+		return 0;
+	}else{
+	    goto label;
+	}
+
+}
+// THE MAIN FUNCTION OF PROGRAM
+int main()
+{
+      //char ch;
+      intro();
+      Login();
+      return 0;
 }
