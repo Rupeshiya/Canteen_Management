@@ -1129,7 +1129,24 @@ void changeqty(int pr1,int q11)
       File.seekp(fpos-sizeof(product),ios::beg);
       int q1=st.getqty();
       q1=q1-q11;
-      st.setqty(q1);
+      if(q1>0)
+      {
+        st.setqty(q1);
+      } else
+      {
+            cout<<"Insufficient quantity !"<<endl;
+            cout<<"Do you want to place the order again ? [y / n]"<<endl;
+            char ans;
+            cin>>ans;
+            if(ans == 'y')
+            {
+                  place_order();
+            } else
+            {
+                  cout<<"See you again !"<<endl;
+            }
+      }
+
       File.write((char *) &st, sizeof(product));
       File.close();
 }
