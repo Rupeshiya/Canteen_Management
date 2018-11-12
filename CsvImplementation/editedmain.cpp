@@ -767,11 +767,13 @@ void place_order()
       float amt=0,damt=0,total=0,ttaxt=0;
       int k=0,q1;
       char ch='Y';
+      int ptx[100];
+      int v=0;
       int value=before_order();
       if(value==1)
       {
+            cout<<endl;
             prod_tabular();
-            intromain();
             cout<<"========================================================================"<<endl;
             cout<<"                             PLACE YOUR ORDER                           "<<endl;
             cout<<"========================================================================"<<endl;
@@ -786,50 +788,48 @@ void place_order()
                         cin>>q1;
                         changeqty(pr1,q1);
                         copyme(k,o1,q1,c);
+                        ptx[v]=pr1;
+                        v++;
                   }
                   else
                   {
                         cout<<"PRODUCT not found"<<endl;
                   }
-                  cout<<"Do you want purchase more (Yes[ y or Y ] or NO [n or N])"<<endl;
+                  cout<<"Do you want purchase more ? (Yes[ y or Y ] or NO [n or N])"<<endl;
                   cin>>ch;
             }while(ch=='y' || ch=='Y');
-            cout<<"Thank You For Placing The Order  ........"<<endl;
+            cout<<"Thank You For Placing The Order  ........"<<endl<<endl;
             cin.get();
-            intromain();
+            cout<<"========================================================================\n"<<endl;
             cout<<"*****************************   INVOICE   ******************************"<<endl;
-            cout<<"PR.No."<<setw(12)<<"NAME"<<setw(10)<<"Qty"<<setw(15)<<"Price"<<setw(13)<<"Amount"<<setw(23)<<"Amount- discount"<<endl;
             cout<<"------------------------------------------------------------------------"<<endl;
+            cout<<"PR.No."<<setw(7)<<"NAME"<<setw(10)<<"Qty"<<setw(15)<<"Price"<<setw(13)<<"Amount"<<setw(20)<<"Amount - discount"<<endl;
             int yy=8;
             for(int x=0;x<c;x++)
             {
-                  cout<<o1[x].prodid1<<endl;
-                  cout<<o1[x].pname1<<endl;
-                  cout<<o1[x].qty1<<endl;
-                  cout<<"Rs."<<o1[x].price1<<endl;
                   amt=o1[x].qty1*o1[x].price1;
-                  cout<<"Rs."<<amt<<endl;
                   damt=amt-o1[x].dis1;
-                  cout<<"Rs."<<damt<<endl;
+                  cout<<ptx[x]<<setw(13)<<o1[x].pname1<<setw(8)<<o1[x].qty1<<setw(15)<<"Rs."<<o1[x].price1<<setw(8)<<"Rs."<<amt<<setw(10)<<"Rs."<<damt<<endl;
                   total+=damt;
                    //ttaxt+=o1[x].tax1;
                   yy++;
              }
-             ttaxt=5;
+             ttaxt=18;
              cout<<"-------------------------------------------------------------------------"<<endl;
              yy++;
-             cout<<"TOTAL: ";
-             cout<<total<<endl;
+             cout<<"\t\t\tTOTAL AMOUNT :    "<<"Rs."<<total<<endl;
              yy++;
-             cout<<"TAX%: ";
-             cout<<"+"<<ttaxt<<"%"<<endl;
-             yy++;
-             cout<<"----------------------------";
-             yy++;
-             cout<<"NET TOTAL: ";
-             cout<<"Rs."<<(total+((ttaxt*total)/100))<<endl;
+             cout<<"\t\t\tCGST         :    "<<"+"<<ttaxt/2<<"%"<<endl;
+             cout<<"\t\t\tSGST         :    "<<"+"<<ttaxt/2<<"%"<<endl;
              yy++;
              cout<<"-------------------------------------------------------------------------"<<endl;
+             yy++;
+             cout<<"\t\t\tNET TOTAL    :    "<<"Rs."<<(total+((ttaxt*total)/100))<<endl;
+             yy++;
+             cout<<"-------------------------------------------------------------------------"<<endl;
+             cout<<"\n\n\t   WE ARE EAGERLY LOOKING FORWARD TO SERVE YOU AGAIN\n";
+             cout<<"\n\t\t\t    HAVE A NICE DAY !\n\n";
+             cout<<"=========================================================================\n"<<endl;
       }
       else
       {
