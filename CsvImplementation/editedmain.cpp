@@ -838,6 +838,8 @@ void place_order()
       float amt=0,damt=0,total=0,ttaxt=0;
       int k=0,q1;
       char ch='Y';
+      int ptx[100];
+      int v=0;
       int value=before_order();
       if(value==1)
       {
@@ -857,6 +859,8 @@ void place_order()
                         cin>>q1;
                         changeqty(pr1,q1);
                         copyme(k,o1,q1,c);
+                        ptx[v]=pr1;
+                        v++;
                   }
                   else
                   {
@@ -876,7 +880,7 @@ void place_order()
             {
                   amt=o1[x].qty1*o1[x].price1;
                   damt=amt-o1[x].dis1;
-                  cout<<o1[x].prodid1<<setw(7)<<o1[x].pname1<<setw(10)<<o1[x].qty1<<setw(15)<<"Rs."<<o1[x].price1<<setw(13)<<"Rs."<<amt<<setw(15)<<"Rs."<<damt<<endl;
+                  cout<<ptx[x]<<setw(13)<<o1[x].pname1<<setw(8)<<o1[x].qty1<<setw(15)<<"Rs."<<o1[x].price1<<setw(8)<<"Rs."<<amt<<setw(10)<<"Rs."<<damt<<endl;
                   total+=damt;
                    //ttaxt+=o1[x].tax1;
                   yy++;
