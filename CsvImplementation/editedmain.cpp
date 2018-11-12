@@ -1461,6 +1461,17 @@ int Login(){
 	cout<<"2.LOGIN"<<endl;
 	cout<<"3.EXIT"<<endl;
 	string p,q,w;
+	int ranarr[2];
+	int it;
+	int tmp1;
+	for(it=0;it<2;it++)
+	{
+		tmp1=rand()%10;
+		ranarr[it]=tmp1;
+	}
+	int summation;
+	summation=ranarr[0]+ranarr[1];
+	int suminput;
 	int x;string s;
 	cin>>x;
 	if(x==1){
@@ -1471,7 +1482,11 @@ int Login(){
   			cin>>s;
   			cout<<"ENTER YOUR PASSWORD"<<endl;
   			cin>>p;
-  			s=s+p;
+  			cout<<ranarr[0]<<" + "<<ranarr[1]<<" = ";
+  			cin>>suminput;
+  			if(suminput==summation)
+  			{
+  				s=s+p;
   			ifstream fin;
   			string line;
   			int offset=0;
@@ -1497,6 +1512,15 @@ int Login(){
   			fout<<s+"\n";
   			fout.close();
   			goto label;
+			}
+			else
+			{
+				cout<<"Are you a robot ???"<<endl;
+				cout<<"Press any key to continue...";
+				getchar();
+				getchar();
+				goto label;
+			}
 	}
 		else if(x==2){
 
@@ -1508,7 +1532,11 @@ int Login(){
   			cin>>q;
   			cout<<"ENTER YOUR PASSWORD"<<endl;
   			cin>>w;
-  			q=q+w;
+  			cout<<ranarr[0]<<" + "<<ranarr[1]<<" = ";
+  			cin>>suminput;
+  			if(suminput==summation)
+            {
+               q=q+w;
   			fin.open("myfile.txt");
   			if(fin.is_open())
   			{
@@ -1533,7 +1561,17 @@ int Login(){
 					goto label;
 								  }
 			}
-  			fin.close();
+  			fin.close();	
+			}
+			else
+			{
+				cout<<"Are you a robot ???"<<endl;
+				cout<<"Press any key to continue...";
+				getchar();
+				getchar();
+				goto label;
+			}
+  			
 	}
 	else if(x==3){
 		return 0;
