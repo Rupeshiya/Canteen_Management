@@ -64,6 +64,7 @@ public:
       {
             return phno;
       }
+      //function for taking input from customer
       void cust_input(int custid)
       {
             cout<<"-------------------------------------------------------------------------"<<endl;
@@ -78,6 +79,7 @@ public:
             cin>>phno;
             cout<<"-------------------------------------------------------------------------"<<endl;
       }
+      //function to show customer details
       void showallcust(int c)
       {
             cout<<"   "<<cust_id<<setw(15)<<cname<<setw(23)<<address<<setw(27)<<phno<<endl;
@@ -636,7 +638,7 @@ void product::modifydata(int n1,char snm[15],char companynm[15],int q)
             strcpy(company,tmpnm2);
       }
       cout<<"PRICE:"<<endl;
-      //add the line to display price 
+      //add the line to display price
       float tmppr=0;
       char yes4,yes3,yes5;
       cout<<"Want to change the price of product ? (Yes[ y or Y ] or NO [n or N])"<<endl;
@@ -1399,6 +1401,7 @@ void administratormenu()
                   }
       }while(ch!='3');
 }
+
 int Login()
 {
 	label:
@@ -1500,3 +1503,4 @@ int main()
       Login();
       return 0;
 }
+
