@@ -1,8 +1,5 @@
 #include<iostream>
 #include<iomanip>
-#include<string>
-#include<cstring>
-#include<cstdlib>
 #include<fstream>
 #include<windows.h>
 using namespace std;
@@ -92,7 +89,19 @@ public:
       {
             cout<<"   "<<cust_id<<setw(15)<<cname<<setw(23)<<address<<setw(27)<<phno<<endl;
       }
-      
+      void showcustdatamulti()
+      {
+             cout<<"-------------------------------------------------------------------------"<<endl;
+             cout<<"CUSTOMER NO:"<<endl;
+             cout<<cust_id<<endl;
+             cout<<"NAME OF CUSTOMER:"<<endl;
+             cout<<cname<<endl;
+             cout<<"ADDRESS:"<<endl;
+             cout<<address<<endl;
+             cout<<"PHONE NO.:"<<endl;
+             cout<<phno<<endl;
+             cout<<"-------------------------------------------------------------------------"<<endl;
+      }
 };
 //function to modify
 void customer::modifycust_data(int n1,char nm[15],char add[15],char q[15])
@@ -105,22 +114,21 @@ void customer::modifycust_data(int n1,char nm[15],char add[15],char q[15])
       cout<<cname<<endl;
       cout<<"Want to change the name of customer ? (Yes[ y or Y ] or NO [n or N])"<<endl;
       int flag=0;
-      while(1)
-      {
+
             cin>>yes1;
             if(yes1== 'Y' || yes1== 'y')
             {
                   cout<<"Enter new name\n";
                   cin>>tmpnm;
                   flag=1;
-                  break;
+                  return;
             }
             if(yes1== 'N' || yes1== 'n')
             {
                   flag=0;
-                  break;
+                  return;
             }
-      }
+
       if(flag==1)
       {
             strcpy(cname,tmpnm);
@@ -130,22 +138,19 @@ void customer::modifycust_data(int n1,char nm[15],char add[15],char q[15])
       cout<<address<<endl;
       cout<<"Want to change the address ? (Yes[ y or Y ] or NO [n or N])"<<endl;
       flag=0;
-      while(1)
-      {
             cin>>yes2;
             if(yes2== 'Y' || yes2== 'y')
             {
                   cout<<"Enter new address\n";
                   cin>>tmpnm2;
                   flag=1;
-                  break;
+                  return;
             }
             if(yes2== 'N' || yes2== 'n')
             {
                   flag=0;
-                  break;
+                  return;
             }
-      }
       if(flag==1)
       {
             strcpy(address,tmpnm2);
@@ -155,22 +160,21 @@ void customer::modifycust_data(int n1,char nm[15],char add[15],char q[15])
       cout<<phno<<endl;
       cout<<"Want to change the phone no. ? (Yes[ y or Y ] or NO [n or N])"<<endl;
       flag=0;
-      while(1)
-      {
+
             cin>>yes3;
             if(yes3== 'Y' || yes3== 'y')
             {
                   cout<<"Enter new phone no.\n";
                   cin>>tmpnm3;
                   flag=1;
-                  break;
+                  return;
             }
             if(yes3== 'N' || yes3== 'n')
             {
                   flag=0;
-                  break;
+                  return;
             }
-      }
+
       if(flag==1)
       {
             strcpy(phno,tmpnm3);
@@ -453,6 +457,7 @@ int searchcust(int p)
       inFile.close();
       if(flag==0)
             return 1;
+      //cout<<"\n\nrecord not exist";
       else
       {
             return tmprt;
@@ -497,6 +502,7 @@ int before_order()
             {
                    cust.showcustdatamulti();
                    f=1;
+                   //tmprt=(int)inFile.tellg();
                    break;
             }
       }
@@ -668,6 +674,7 @@ void product::modifydata(int n1,char snm[15],char companynm[15],int q)
             strcpy(company,tmpnm2);
       }
       cout<<"PRICE:"<<endl;
+      //add the line to display price
       float tmppr=0;
       char yes4,yes3,yes5;
       cout<<"Want to change the price of product ? (Yes[ y or Y ] or NO [n or N])"<<endl;
@@ -693,6 +700,7 @@ void product::modifydata(int n1,char snm[15],char companynm[15],int q)
             price=tmppr;
       }
       cout<<"QUANTITY:"<<endl;
+      //add the line to display quantity
       int tmpqty=0;
       cout<<"Want to change the quantity of product ? (Yes[ y or Y ] or NO [n or N])"<<endl;
       flag=0;
@@ -717,6 +725,7 @@ void product::modifydata(int n1,char snm[15],char companynm[15],int q)
             qty=tmpqty;
       }
       cout<<"DISCOUNT%:"<<endl;
+       //add the line to display discount
       float tmpdis=0;
       cout<<"Want to change the discount of product ? (Yes[ y or Y ] or NO [n or N])"<<endl;
       flag=0;
@@ -865,6 +874,7 @@ void place_order()
                   damt=amt-o1[x].dis1;
                   cout<<ptx[x]<<setw(13)<<o1[x].pname1<<setw(8)<<o1[x].qty1<<setw(15)<<"Rs."<<o1[x].price1<<setw(8)<<"Rs."<<amt<<setw(10)<<"Rs."<<damt<<endl;
                   total+=damt;
+                   //ttaxt+=o1[x].tax1;
                   yy++;
              }
              ttaxt=18;
@@ -1242,7 +1252,7 @@ void admin_menu()
                   admin_menu();
                   break;
             case '2':
-                  prod_tabular();
+                  prod_tabular();//display_all();
                   admin_menu();
                   break;
             case '3':
@@ -1439,17 +1449,6 @@ int Login(){
 	cout<<"2.LOGIN"<<endl;
 	cout<<"3.EXIT"<<endl;
 	string p,q,w;
-	int ranarr[2];
-	int it;
-	int tmp1;
-	for(it=0;it<2;it++)
-	{
-		tmp1=rand()%10;
-		ranarr[it]=tmp1;
-	}
-	int summation;
-	summation=ranarr[0]+ranarr[1];
-	int suminput;
 	int x;string s;
 	cin>>x;
 	if(x==1){
@@ -1460,11 +1459,7 @@ int Login(){
   			cin>>s;
   			cout<<"ENTER YOUR PASSWORD"<<endl;
   			cin>>p;
-  			cout<<ranarr[0]<<" + "<<ranarr[1]<<" = ";
-  			cin>>suminput;
-  			if(suminput==summation)
-  			{
-  				s=s+p;
+  			s=s+p;
   			ifstream fin;
   			string line;
   			int offset=0;
@@ -1481,7 +1476,7 @@ int Login(){
 						char kk;
 						cin>>kk;
 						goto label;
-						
+						//break;
 					}
 				}
 			}
@@ -1490,15 +1485,6 @@ int Login(){
   			fout<<s+"\n";
   			fout.close();
   			goto label;
-			}
-			else
-			{
-				cout<<"Are you a robot ???"<<endl;
-				cout<<"Press any key to continue...";
-				getchar();
-				getchar();
-				goto label;
-			}
 	}
 		else if(x==2){
 
@@ -1510,11 +1496,7 @@ int Login(){
   			cin>>q;
   			cout<<"ENTER YOUR PASSWORD"<<endl;
   			cin>>w;
-  			cout<<ranarr[0]<<" + "<<ranarr[1]<<" = ";
-  			cin>>suminput;
-  			if(suminput==summation)
-            {
-               q=q+w;
+  			q=q+w;
   			fin.open("myfile.txt");
   			if(fin.is_open())
   			{
@@ -1533,22 +1515,13 @@ int Login(){
 				{
 					cout<<"sorry you are unauthorised!!"<<endl;
 					cout<<"Press 1 and enter to go to home page"<<endl;
+					//getch();
 					char o;
 					cin>>o;
 					goto label;
 								  }
 			}
-  			fin.close();	
-			}
-			else
-			{
-				cout<<"Are you a robot ???"<<endl;
-				cout<<"Press any key to continue...";
-				getchar();
-				getchar();
-				goto label;
-			}
-  			
+  			fin.close();
 	}
 	else if(x==3){
 		return 0;
@@ -1560,6 +1533,7 @@ int Login(){
 // THE MAIN FUNCTION OF PROGRAM
 int main()
 {
+      //char ch;
       intro();
       Login();
       return 0;
