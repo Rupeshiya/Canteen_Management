@@ -8,6 +8,7 @@
 #include<fstream>
 #include<sstream>
 #include<typeinfo>
+#include<cmath>
 #include<windows.h>
 using namespace std;
 struct order
@@ -813,7 +814,6 @@ void place_order()
                   {
                         cout<<"Enter the Quantity:"<<endl;
                         cin>>q1;
-                        changeqty(pr1,q1);
                         copyme(k,o1,q1,c);
                         ptx[v]=pr1;
                         v++;
@@ -830,33 +830,53 @@ void place_order()
             cout<<"========================================================================\n"<<endl;
             cout<<"*****************************   INVOICE   ******************************"<<endl;
             cout<<"------------------------------------------------------------------------"<<endl;
-            cout<<"PR.No."<<setw(7)<<"NAME"<<setw(10)<<"Qty"<<setw(15)<<"Price"<<setw(13)<<"Amount"<<setw(20)<<"Amount - discount"<<endl;
+            cout<<"PR.No."<<setw(7)<<"NAME"<<setw(10)<<"Qty"<<setw(12)<<"Price"<<setw(13)<<"Amount"<<setw(23)<<"Amount - discount"<<endl<<endl;
             int yy=8;
             for(int x=0;x<c;x++)
             {
                   amt=o1[x].qty1*o1[x].price1;
                   damt=amt-o1[x].dis1;
-                  cout<<ptx[x]<<setw(13)<<o1[x].pname1<<setw(8)<<o1[x].qty1<<setw(15)<<"Rs."<<o1[x].price1<<setw(8)<<"Rs."<<amt<<setw(10)<<"Rs."<<damt<<endl;
+                  cout<<"  "<<ptx[x]<<setw(10)<<o1[x].pname1<<setw(9)<<o1[x].qty1<<setw(12)<<"Rs."<<o1[x].price1<<setw(10)<<"Rs."<<amt<<setw(14)<<"Rs."<<damt<<endl;
                   total+=damt;
                    //ttaxt+=o1[x].tax1;
                   yy++;
              }
              ttaxt=18;
-             cout<<"-------------------------------------------------------------------------"<<endl;
+             cout<<"\n-------------------------------------------------------------------------"<<endl;
              yy++;
-             cout<<"\t\t\tTOTAL AMOUNT :    "<<"Rs."<<total<<endl;
+             cout<<"\n\t\t  TOTAL AMOUNT     :   "<<"Rs."<<total<<endl;
              yy++;
-             cout<<"\t\t\tCGST         :    "<<"+"<<ttaxt/2<<"%"<<endl;
-             cout<<"\t\t\tSGST         :    "<<"+"<<ttaxt/2<<"%"<<endl;
-             yy++;
-             cout<<"-------------------------------------------------------------------------"<<endl;
-             yy++;
-             cout<<"\t\t\tNET TOTAL    :    "<<"Rs."<<(total+((ttaxt*total)/100))<<endl;
+             cout<<"\t\t  CGST             :   "<<"+"<<ttaxt/2<<"%"<<endl;
+             cout<<"\t\t  SGST             :   "<<"+"<<ttaxt/2<<"%"<<endl;
              yy++;
              cout<<"-------------------------------------------------------------------------"<<endl;
+             yy++;
+             cout<<"\t\t  NET TOTAL        :   "<<"Rs."<<(total+((ttaxt*total)/100))<<endl;
+             yy++;
+             cout<<"\t\t  ROUND OFF AMOUNT :   "<<"Rs."<<fixed<<setprecision(2)<<(round(total+((ttaxt*total)/100))-(total+((ttaxt*total)/100)))<<endl;
+             cout<<"\t\t  NET AMOUNT DUE   :   "<<"Rs."<<round(total+((ttaxt*total)/100))<<endl<<endl;
+             cout<<"-------------------------------------------------------------------------"<<endl;
+             cout<<"\t\t   P A Y M E N T  S U M M A R Y  "<<endl;
+             cout<<"-------------------------------------------------------------------------"<<endl;
+             cout<<"\t\t  Enter CASH value :   Rs.";
+             float vb,xy;
+             cin>>vb;
+             xy=(vb-round(total+((ttaxt*total)/100)));
+             if(xy<0)
+             {
+                cout<<"\nSorry! You have paid Insufficient cash. Please reinitiate billing. Thank You."<<endl;
+                cust_menu1();
+             }
+             else
+             {
+                cout<<"\t     Change to be returned :   Rs."<<xy<<endl;
+                changeqty(pr1,q1);
+                cout<<"-------------------------------------------------------------------------"<<endl;
              cout<<"\n\n\t   WE ARE EAGERLY LOOKING FORWARD TO SERVE YOU AGAIN\n";
              cout<<"\n\t\t\t    HAVE A NICE DAY !\n\n";
              cout<<"=========================================================================\n"<<endl;
+             }
+             cin.get();
       }
       else
       {
@@ -1492,8 +1512,8 @@ int Login()
 					cout<<"You are logged in !!"<<endl;
 					offset=1;
                     mainMenu();
-					//break;
-                }
+					          // break;
+          }
 			}
 
   			fin.close();	
