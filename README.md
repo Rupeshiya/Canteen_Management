@@ -1,5 +1,5 @@
 <p align="center">
-  <img  src=../logo.png" />
+  <img  src="https://user-images.githubusercontent.com/31209617/48580549-8816a200-e945-11e8-8814-7e927f7d21d7.png" />
 </p>
 
 <p align="center"><b>CANTEEN MANAGEMENT SYSTEM</b></p>
