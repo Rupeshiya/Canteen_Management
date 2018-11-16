@@ -21,8 +21,14 @@
 * Billing Option.
 * Display Invoice. 
 
+<p align="center"><b>Application Working ..</b></p>
 
-###                                      MySql DATABASE AS BACKEND
+<p align="center">
+<img src="https://user-images.githubusercontent.com/31209617/48620324-b9cf4d80-e9c5-11e8-9caa-45e0bba493e8.gif" />
+</p>  
+
+
+###                                      MySql DATABASE AS BACKEND  
 
 * The code for this is in mysql_code --> main.cpp
 
